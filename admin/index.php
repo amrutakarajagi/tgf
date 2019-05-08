@@ -7,7 +7,7 @@
 
 <body>
 	<div id="header">
-		Welcome to my page!
+		Welcome to Admin!
 	</div>
 	<?php
 	if(isset($_SESSION['valid'])) {			
@@ -17,7 +17,12 @@
 				
 		Welcome <?php echo $_SESSION['name'] ?> ! <a href='logout.php'>Logout</a><br/>
 		<br/>
-		<a href='view.php'>View and Add Products</a>
+		<a href='view.php?value=all'><b>View Members - All</b></a><br><br>
+		<a href='view.php?value=women_single'><b>View Members - Women Single</b></a><br><br>
+		<a href='view.php?value=women_double'><b>View Members - Women Double</b></a><br><br>
+		<a href='view.php?value=men_single'><b>View Members - Men Single</b></a><br><br>
+		<a href='view.php?value=men_double'><b>View Members - Men Double</b></a><br><br>
+		<a href='view.php?value=mix_double'><b>View Members - Mix Double</b></a><br><br>
 		<br/><br/>
 	<?php	
 	} else {
@@ -26,7 +31,7 @@
 	}
 	?>
 	<div id="footer">
-		Created by <a href="http://blog.chapagain.com.np" title="Mukesh Chapagain">Mukesh Chapagain</a>
+		Created by <a href="https://zenidealabs.com/" title="ZenIdeaLabas">ZenIdeaLabas</a>
 	</div>
 </body>
 </html>
