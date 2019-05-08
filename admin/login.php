@@ -1,14 +1,12 @@
 <?php session_start(); ?>
+<?php include("connection.php"); ?>
 <html>
 <head>
 	<title>Login</title>
 </head>
-
 <body>
 <a href="index.php">Home</a> <br />
 <?php
-include("connection.php");
-
 if(isset($_POST['submit'])) {
 	$user = mysqli_real_escape_string($mysqli, $_POST['username']);
 	$pass = mysqli_real_escape_string($mysqli, $_POST['password']);
@@ -35,7 +33,9 @@ if(isset($_POST['submit'])) {
 		}
 
 		if(isset($_SESSION['valid'])) {
-			header('Location: index.php');			
+			// header('Location: index.php');			
+exit(header("Location: index.php"));
+
 		}
 	}
 } else {
