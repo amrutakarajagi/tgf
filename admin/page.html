@@ -102,6 +102,13 @@
                     'partnerDouble': same_partner,
                     'partnerMix': mixed_partner,
                 },
+                success: function(data){
+                    return data;
+                },
+                failure: function(data){
+                    return data;
+                }
+
 
             });
         }
@@ -112,7 +119,7 @@
         function payVenue(event) {
 
             if ($("#pay_form")[0].checkValidity() && checkForm()) {
-                defaultSubmit(event, true);
+                var data= defaultSubmit(event, true);
             }
             event.preventDefault();
 
@@ -123,7 +130,7 @@
 
         function payNow(event) {
             if ($("#pay_form")[0].checkValidity() && checkForm()) {
-                defaultSubmit(event, false);
+                var data =defaultSubmit(event, false);
             }
             event.preventDefault();
         }
