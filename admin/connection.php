@@ -14,9 +14,9 @@ $conn = mysql_connect("localhost","root","root")
  */
 
 $databaseHost = 'localhost';
-$databaseName = 'tgfopen_db';
-$databaseUsername = 'root';
-$databasePassword = '';
+$databaseName = 'shiksha_tgfopen';
+$databaseUsername = 'shiksha_tgfopen';
+$databasePassword = '123$tgfopen123';
 
 $mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName); 
 	

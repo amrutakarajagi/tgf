@@ -55,6 +55,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if(isset($_POST['doubleMix'])) {
 		$mix_double = $_POST['doubleMix'];
 	} else return 0;
+
+	if(isset($_POST['payVenue'])) {
+		$pay_at_venue = $_POST['payVenue'];
+	} else return 0;
 	// if(empty($amount)) {
 	// 	return "Total Amount field is empty.";
 	// }
@@ -63,7 +67,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 			
 	// if all the mandetory fields are filled (not empty) 
 	//insert data to database	
-	$result = mysqli_query($mysqli, "INSERT INTO users(name, mob_no, alt_mob_no, email, company, amount, partner_mix, partner_double, men_single, men_double, women_double, women_single, mix_double) VALUES('$name','$mob_no','$alt_mob_no','$email','$company','$amount','$partner_mix','$partner_double','$men_single','$men_double','$women_double','$women_single','$mix_double')");
+	$result = mysqli_query($mysqli, "INSERT INTO users(name, mob_no, alt_mob_no, email, company, amount, partner_mix, partner_double, men_single, men_double, women_double, women_single, mix_double, pay_at_venue) VALUES('$name','$mob_no','$alt_mob_no','$email','$company','$amount','$partner_mix','$partner_double','$men_single','$men_double','$women_double','$women_single','$mix_double','$pay_at_venue')");
 	if($result) {
 		return 1;
 	} else {

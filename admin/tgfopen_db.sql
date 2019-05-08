@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2019 at 04:12 PM
+-- Generation Time: May 08, 2019 at 04:32 PM
 -- Server version: 5.7.14
 -- PHP Version: 7.0.10
 
@@ -85,15 +85,16 @@ CREATE TABLE `users` (
   `women_double` tinyint(1) NOT NULL DEFAULT '0',
   `mix_double` tinyint(1) NOT NULL DEFAULT '0',
   `partner_double` varchar(100) DEFAULT NULL,
-  `is_paid` tinyint(1) NOT NULL DEFAULT '0'
+  `is_paid` tinyint(1) NOT NULL DEFAULT '0',
+  `pay_at_venue` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`name`, `mob_no`, `alt_mob_no`, `email`, `company`, `amount`, `created_at`, `id`, `partner_mix`, `men_single`, `men_double`, `women_single`, `women_double`, `mix_double`, `partner_double`, `is_paid`) VALUES
-('amruta', 3234324, 324324, 'Guroomed@123', 'zenrays', '322', '2019-05-08 16:08:13', 1, 'adwait', 0, 0, 1, 1, 1, '', 1);
+INSERT INTO `users` (`name`, `mob_no`, `alt_mob_no`, `email`, `company`, `amount`, `created_at`, `id`, `partner_mix`, `men_single`, `men_double`, `women_single`, `women_double`, `mix_double`, `partner_double`, `is_paid`, `pay_at_venue`) VALUES
+('amruta', 3234324, 324324, 'Guroomed@123', 'zenrays', '322', '2019-05-08 16:08:13', 1, 'adwait', 0, 0, 1, 1, 1, '', 1, 0);
 
 -- --------------------------------------------------------
 

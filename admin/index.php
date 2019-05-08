@@ -27,7 +27,7 @@
 	<?php	
 	} else {
 		echo "You must be logged in to view this page.<br/><br/>";
-		echo "<a href='login.php'>Login</a> | <a href='register.php'>Register</a>";
+		echo "<a href='login.php'>Login</a>";
 	}
 	?>
 	<div id="footer">
