@@ -116,12 +116,12 @@
 
 
 
-        function payVenue(event) {
-
+        function payVenue(event) {            
             if ($("#pay_form")[0].checkValidity() && checkForm()) {
+                console.log("check successful");
                 var data= defaultSubmit(event, true);
             }
-            event.preventDefault();
+            
 
 
 
@@ -132,7 +132,7 @@
             if ($("#pay_form")[0].checkValidity() && checkForm()) {
                 var data =defaultSubmit(event, false);
             }
-            event.preventDefault();
+            
         }
     </script>
 </head>
