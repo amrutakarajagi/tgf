@@ -165,7 +165,7 @@
                     'doubleMix': doubles_mixed,
                     'menDouble': doubles_men,
                     'womenDouble': doubles_women,
-                    'payVenue': flag ? 1 : 0,
+                    'payVenue': false ? 1 : 0,
                     'partnerDouble': same_partner,
                     'partnerMix': mixed_partner,
                 },
@@ -173,7 +173,7 @@
                     window.location.href = data;
                 },
                 failure: function(data){
-                    return data;
+                    console.log(data);
                 }
 
 
