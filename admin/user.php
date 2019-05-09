@@ -12,7 +12,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$mob_no = $_POST['mobileNumber'];
 	} else echo 'Enter Mobile Number'; 
 
-	if(isset($_POST['altMobileNumber'])) {
+	if(!empty($_POST['altMobileNumber'])) {
 		$alt_mob_no = $_POST['altMobileNumber'];
 	} else $alt_mob_no = Null;
 
