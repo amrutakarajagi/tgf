@@ -171,8 +171,9 @@
                 },
                 success: function(data){
                     console.log(data);
-                    data= encodeURIComponent(data);
-                    window.location.href = data;
+                    alert("click this url to complete payment "+ data);
+                    // data= encodeURIComponent(data);
+                    // window.location.href = data;
                 },
                 failure: function(data){
                     console.log(data);
