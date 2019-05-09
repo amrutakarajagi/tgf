@@ -132,9 +132,53 @@
 
         function payNow(event) {
             if ($("#pay_form")[0].checkValidity() && checkForm()) {
-                var data =defaultSubmit(event, false);
-                console.log(data);
-                window.location.href = data;
+                event.preventDefault();
+            // Push our data into our FormData object
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var phone1 = document.getElementById("phone1").value;
+            var phone2 = document.getElementById("phone2").value;
+            var company = document.getElementById("company").value;
+            var singles_men = document.getElementById("men-singles").checked ? 1 : 0;
+            var singles_women = document.getElementById("women-singles").checked ? 1 : 0;
+            var doubles_men = document.getElementById("men-doubles").checked ? 1 : 0;
+            var doubles_women = document.getElementById("women-doubles").checked ? 1 : 0;
+            var doubles_mixed = document.getElementById("mixed-doubles").checked ? 1 : 0;
+            var price = document.getElementById("price").innerHTML;
+            var same_partner = document.getElementById("gender_partner").value;
+            var mixed_partner = document.getElementById("mixed_partner").value;
+
+
+            $.ajax({
+                type: 'POST',
+                url: 'http://tgfopen.com/admin/user.php',
+                crossDomain: true, // tell browser to allow cross domain  
+                data: {
+                    'fullName': name,
+                    'mobileNumber': phone1,
+                    'altMobileNumber': phone2,
+                    'emailID': email,
+                    'companyName': company,
+                    'totalAmount': price,
+                    'menSingle': singles_men,
+                    'womenSingle': singles_women,
+                    'doubleMix': doubles_mixed,
+                    'menDouble': doubles_men,
+                    'womenDouble': doubles_women,
+                    'payVenue': flag ? 1 : 0,
+                    'partnerDouble': same_partner,
+                    'partnerMix': mixed_partner,
+                },
+                success: function(data){
+                    window.location.href = data;
+                },
+                failure: function(data){
+                    return data;
+                }
+
+
+            });
+                
             }
             else if ($("#pay_form")[0].checkValidity()){
                 event.preventDefault();
