@@ -121,7 +121,9 @@
                 console.log("check successful");
                 var data= defaultSubmit(event, true);
             }
-            
+            else if ($("#pay_form")[0].checkValidity()){
+                event.preventDefault();
+            }
 
 
 
@@ -131,6 +133,9 @@
         function payNow(event) {
             if ($("#pay_form")[0].checkValidity() && checkForm()) {
                 var data =defaultSubmit(event, false);
+            }
+            else if ($("#pay_form")[0].checkValidity()){
+                event.preventDefault();
             }
             
         }
