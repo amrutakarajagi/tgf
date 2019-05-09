@@ -133,6 +133,8 @@
         function payNow(event) {
             if ($("#pay_form")[0].checkValidity() && checkForm()) {
                 var data =defaultSubmit(event, false);
+                console.log(data);
+                window.location.href = data;
             }
             else if ($("#pay_form")[0].checkValidity()){
                 event.preventDefault();
