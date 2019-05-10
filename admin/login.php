@@ -33,9 +33,10 @@ if(isset($_POST['submit'])) {
 		}
 
 		if(isset($_SESSION['valid'])) {
-			// header('Location: index.php');			
-exit(header("Location: index.php"));
-
+			// header('Location: index.php');
+?>
+<?php exit(header("Location: index.php")); ?>
+<?php
 		}
 	}
 } else {

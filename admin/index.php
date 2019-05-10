@@ -17,12 +17,12 @@
 				
 		Welcome <?php echo $_SESSION['name'] ?> ! <a href='logout.php'>Logout</a><br/>
 		<br/>
-		<a href='view.php?value=all'><b>View Members - All</b></a><br><br>
-		<a href='view.php?value=women_single'><b>View Members - Women Single</b></a><br><br>
-		<a href='view.php?value=women_double'><b>View Members - Women Double</b></a><br><br>
-		<a href='view.php?value=men_single'><b>View Members - Men Single</b></a><br><br>
-		<a href='view.php?value=men_double'><b>View Members - Men Double</b></a><br><br>
-		<a href='view.php?value=mix_double'><b>View Members - Mix Double</b></a><br><br>
+		<a href='view.php?value=all&title=All Members'><b>View Members - All</b></a><br><br>
+		<a href='view.php?value=women_single&title=Women Single'><b>View Members - Women Single</b></a><br><br>
+		<a href='view.php?value=women_double&title=Women Double'><b>View Members - Women Double</b></a><br><br>
+		<a href='view.php?value=men_single&title=Men Single'><b>View Members - Men Single</b></a><br><br>
+		<a href='view.php?value=men_double&title=Men Double'><b>View Members - Men Double</b></a><br><br>
+		<a href='view.php?value=mix_double&title=Mix Double'><b>View Members - Mix Double</b></a><br><br>
 		<br/><br/>
 	<?php	
 	} else {
