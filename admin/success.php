@@ -8,6 +8,7 @@ include("instamojoPay.php");
 
 <?php 
 $api = new Instamojo\Instamojo('715723becbeb6a343f262ac1312ea3ce', 'cff4d4b902d8b7baa402dae91ae30957');
+// $api = new Instamojo\Instamojo('test_47eb37e1668e266835291e1e33e', 'test_0ab040ecc047d76a329f1adcff1');
 
 try {
     $response = $api->paymentRequestStatus($_GET['payment_request_id']);
@@ -15,10 +16,10 @@ try {
     // echo $_SESSION["email"];
     // echo $_SESSION["tran_id"];
     if ($_SESSION["tran_id"] == $response['id']) {
-		$result = mysqli_query($mysqli, "UPDATE users SET is_paid = 1 WHERE email ='".$_SESSION["email"]."'");
+		$result = mysqli_query($mysqli, "UPDATE users SET is_paid = 1 WHERE id ='".$_SESSION["reg_id"]."'");
 		// echo "UPDATE users SET is_paid = 1 WHERE email ='".$_SESSION["email"]."'";
 		// echo "<br>".$result;
-		$result = mysqli_query($mysqli, "UPDATE users SET payment_id = '".$response['payments'][0]['payment_id']."' WHERE email ='".$_SESSION["email"]."'");
+		$result = mysqli_query($mysqli, "UPDATE users SET payment_id = '".$response['payments'][0]['payment_id']."' WHERE id ='".$_SESSION["reg_id"]."'");
 		// echo "UPDATE users SET payment_id = ".$response['payments'][0]['payment_id']." WHERE email ='".$_SESSION["email"]."'";
 		// echo "<br>".$result;
     // print_r($response);

@@ -4,9 +4,10 @@ include_once("connection.php");
 include("instamojoPay.php");
 
 // $result = mysqli_query($mysqli, "DROP TABLE users_types");
-// $result = mysqli_query($mysqli, "TRUNCATE TABLE users");
-// $result = mysqli_query($mysqli, "DELETE FROM 'login' WHERE username = 'admin';");
+// $result = mysqli_query($mysqli, "DELETE FROM login WHERE username = 'admin';");
+// $result = mysqli_query($mysqli, "DELETE FROM users WHERE id < 20);
 // $result = mysqli_query($mysqli, "ALTER TABLE users ADD payment_id VARCHAR( 500 )");
+// $result = mysqli_query($mysqli, "UPDATE login SET password=md5('TGFopen2019') WHERE username='tgf_event_admin'");
 try {
 
 	if($_SERVER['REQUEST_METHOD'] === 'POST') {	
@@ -20,9 +21,9 @@ try {
 			$mob_no = $_POST['mobileNumber'];
 		} else echo 'Enter Mobile Number'; 
 
-		if(!is_null($_POST['altMobileNumber'])) {
+		if(!is_null($_POST['altMobileNumber']) && !empty($_POST['altMobileNumber']) ) {
 			$alt_mob_no = $_POST['altMobileNumber'];
-		} else $alt_mob_no = Null;
+		} else $alt_mob_no = 0;
 
 		if(isset($_POST['emailID'])) {
 			$email = $_POST['emailID'];
@@ -75,9 +76,12 @@ try {
 				
 		// if all the mandetory fields are filled (not empty) 
 		//insert data to database	
-		$result = mysqli_query($mysqli, "INSERT INTO users(name, mob_no, alt_mob_no, email, company, amount, partner_mix, partner_double, men_single, men_double, women_double, women_single, mix_double, pay_at_venue) VALUES('$name','$mob_no','$alt_mob_no','$email','$company','$amount','$partner_mix','$partner_double','$men_single','$men_double','$women_double','$women_single','$mix_double','$pay_at_venue')");
+		$sql = "INSERT INTO users(name, mob_no, alt_mob_no, email, company, amount, partner_mix, partner_double, men_single, men_double, women_double, women_single, mix_double, pay_at_venue) VALUES('$name','$mob_no','$alt_mob_no','$email','$company','$amount','$partner_mix','$partner_double','$men_single','$men_double','$women_double','$women_single','$mix_double','$pay_at_venue')";
 
-		if($result) {
+		if (mysqli_query($mysqli, $sql)) {
+		    $last_id = mysqli_insert_id($mysqli);
+		    // echo $last_id;
+
 			session_start();
 			$_SESSION["mob_no"] = $mob_no;
 			$_SESSION["email"] = $email;
@@ -95,11 +99,12 @@ try {
 					"send_sms" => true,
 					"email" => $email,
 					"buyer_name" => $name,
-					"redirect_url" => "http://tgfopen.com/admin/success.php"
+					"redirect_url" => "http://localhost/tgf/tgf/admin/success.php"
 				));
 				// echo($response['id']);
 				// exit(header("Location: ".$response['longurl']));
 
+				$_SESSION["reg_id"] = $last_id;
 				$_SESSION["tran_id"] = $response['id'];
 				echo($response['longurl']);
 			}
@@ -107,7 +112,7 @@ try {
 			    print('Error: ' . $e->getMessage());
 			}
 		} else {
-			 echo'Some Error Came'; 
+		    echo "Error: " . $sql . "<br>" . mysqli_error($mysqli);
 		}
 	}
 }

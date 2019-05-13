@@ -11,9 +11,9 @@ include_once("connection.php");
 
 //fetching data in descending order (lastest entry first)
 if ($_GET['value'] == 'all') {
-$result = mysqli_query($mysqli, "SELECT * FROM users ORDER BY id DESC");
+$result = mysqli_query($mysqli, "SELECT * FROM users ORDER BY id ASC");
 } else {
-$result = mysqli_query($mysqli, "SELECT * FROM users WHERE ".$_GET['value']."=1 ORDER BY id DESC");
+$result = mysqli_query($mysqli, "SELECT * FROM users WHERE ".$_GET['value']."=1 ORDER BY id ASC");
 }
 	
 ?>
@@ -24,6 +24,9 @@ $result = mysqli_query($mysqli, "SELECT * FROM users WHERE ".$_GET['value']."=1 
 <style type="text/css">
 td {
     padding: 10px;
+}
+td {
+    border-top: 1px solid #000000;
 }
 </style>
 </head>
@@ -37,6 +40,7 @@ td {
 	
 	<table width='100%' border=0>
 		<tr bgcolor='#CCCCCC'>
+			<td></td>
 			<td>Full Name</td>
 			<td>Mobile No</td>
 			<td>Email</td>
@@ -49,10 +53,12 @@ td {
 			<td>Payment ID</td>
 		</tr>
 		<?php
+		$i = 1;
 		while($res = mysqli_fetch_array($result)) {		
-			echo "<tr>";
+			echo "<tr style='border-top:1px solid;'>";
+			echo "<td>".$i++."</td>";
 			echo "<td>".$res['name']."</td>";
-			echo "<td>".$res['mob_no']."<br>".$res['alt_mob_no']."</td>";
+			echo "<td><b>".$res['mob_no']."</b><br>".($res['alt_mob_no'] ? $res['alt_mob_no'] : '')."</td>";
 			echo "<td>".$res['email']."</td>";	
 			echo "<td>".$res['company']."</td>";
 			if ( $_GET['value']=='women_double' || $_GET['value']=='men_double' ) {
@@ -64,7 +70,8 @@ td {
 				echo "<td>".$res['partner_mix']."</td>";	
 			}
 			echo "<td>".(($res['is_paid']) ? '<span style="color:green">Yes</span>' : '<span style="color:red">No</span>')."</td>";	
-			echo "<td>".$res['payment_id']."</td>";	
+			echo "<td>".$res['payment_id']."</td>";
+			echo "</tr>";	
 			// echo "<td><a href=\"edit.php?id=$res[id]\">Edit</a> | <a href=\"delete.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";		
 		}
 		?>

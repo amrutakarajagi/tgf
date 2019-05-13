@@ -9,6 +9,9 @@ class Instamojo {
     protected $endpoint = 'https://www.instamojo.com/api/1.1/';
     protected $api_key = '715723becbeb6a343f262ac1312ea3ce';
     protected $auth_token = 'cff4d4b902d8b7baa402dae91ae30957';
+    // protected $endpoint = 'https://test.instamojo.com/api/1.1/';
+    // protected $api_key = '715723becbeb6a343f262ac1312ea3ce';
+    // protected $auth_token = 'cff4d4b902d8b7baa402dae91ae30957';
 
     /**
     * @param string $api_key
