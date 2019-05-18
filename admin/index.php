@@ -30,8 +30,5 @@
 		echo "<a href='login.php'>Login</a>";
 	}
 	?>
-	<div id="footer">
-		Created by <a href="https://zenidealabs.com/" title="ZenIdeaLabas">ZenIdeaLabas</a>
-	</div>
 </body>
 </html>

@@ -99,7 +99,7 @@ try {
 					"send_sms" => true,
 					"email" => $email,
 					"buyer_name" => $name,
-					"redirect_url" => "http://localhost/tgf/tgf/admin/success.php"
+					"redirect_url" => "http://tgfopen.com/admin/success.php"
 				));
 				// echo($response['id']);
 				// exit(header("Location: ".$response['longurl']));
