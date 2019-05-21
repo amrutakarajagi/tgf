@@ -1,0 +1,283 @@
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        crossorigin="anonymous"></script>
+    <script>
+        function updatePrice() {
+            var price = 0;
+            var ids = ['men-singles', 'women-singles', 'men-doubles',
+                'women-doubles', 'mixed-doubles'];
+            var prices = [300, 300, 400, 400, 400];
+            for (var i = 0; i < ids.length; i++) {
+                if (document.getElementById(ids[i]).checked == true) {
+                    price += prices[i];
+                }
+            }
+            document.getElementById("price").innerHTML = price;
+        }
+
+        function checkForm() {
+            var singles_men = document.getElementById("men-singles").checked ? 1 : 0;
+            var singles_women = document.getElementById("women-singles").checked ? 1 : 0;
+            var doubles_men = document.getElementById("men-doubles").checked ? 1 : 0;
+            var doubles_women = document.getElementById("women-doubles").checked ? 1 : 0;
+            var doubles_mixed = document.getElementById("mixed-doubles").checked ? 1 : 0;
+            var price = document.getElementById("price").innerHTML;
+            var same_partner = document.getElementById("gender_partner").value;
+            var mixed_partner = document.getElementById("mixed_partner").value;
+
+            console.log(price);
+
+            if (price === '0' || price === '') {
+                alert("Please select atleast one category to compete with");
+                return false;
+            }
+            if ((doubles_men === 1 || doubles_women === 1) && same_partner === '') {
+                alert("please enter name of your doubles partner");
+                return false;
+            }
+            if (doubles_mixed === 1 && mixed_partner === '') {
+                alert("Please enter details of your mixed doubles partner");
+                return false;
+            }
+            if (singles_men === 1 && singles_women === 1) {
+                alert("You cannot select both male and female singles event");
+                return false;
+            }
+            if (doubles_men === 1 && doubles_women === 1) {
+                alert("you cannot select both male and female doubles event");
+                return false;
+            }
+            if ((singles_men === 1 && doubles_women === 1) || (singles_women === 1 && doubles_men === 1)) {
+                alert("Single and Doubles event selected should be of same gender");
+                return false;
+            }
+            return true;
+
+
+        }
+
+        function defaultSubmit(event, flag) {
+
+            event.preventDefault();
+            // Push our data into our FormData object
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var phone1 = document.getElementById("phone1").value;
+            var phone2 = document.getElementById("phone2").value;
+            var company = document.getElementById("company").value;
+            var singles_men = document.getElementById("men-singles").checked ? 1 : 0;
+            var singles_women = document.getElementById("women-singles").checked ? 1 : 0;
+            var doubles_men = document.getElementById("men-doubles").checked ? 1 : 0;
+            var doubles_women = document.getElementById("women-doubles").checked ? 1 : 0;
+            var doubles_mixed = document.getElementById("mixed-doubles").checked ? 1 : 0;
+            var price = document.getElementById("price").innerHTML;
+            var same_partner = document.getElementById("gender_partner").value;
+            var mixed_partner = document.getElementById("mixed_partner").value;
+
+
+            $.ajax({
+                type: 'POST',
+                url: 'http://tgfopen.com/admin/user.php',
+                crossDomain: true, // tell browser to allow cross domain  
+                data: {
+                    'fullName': name,
+                    'mobileNumber': phone1,
+                    'altMobileNumber': phone2,
+                    'emailID': email,
+                    'companyName': company,
+                    'totalAmount': price,
+                    'menSingle': singles_men,
+                    'womenSingle': singles_women,
+                    'doubleMix': doubles_mixed,
+                    'menDouble': doubles_men,
+                    'womenDouble': doubles_women,
+                    'payVenue': flag ? 1 : 0,
+                    'partnerDouble': same_partner,
+                    'partnerMix': mixed_partner,
+                },
+                success: function(data){
+                    // alert("Registration Successful. Click Ok to redirect to home page");
+                    window.location="http://tgfopen.com/admin/success.php?payment=at_venue";
+                },
+                failure: function(data){
+                    return data;
+                }
+
+
+            });
+        }
+
+
+
+
+        function payVenue(event) {            
+            if ($("#pay_form")[0].checkValidity() && checkForm()) {
+                console.log("check successful");
+                var data= defaultSubmit(event, true);
+            }
+            else if ($("#pay_form")[0].checkValidity()){
+                event.preventDefault();
+            }
+
+
+
+
+        }
+
+        function payNow(event) {
+            if ($("#pay_form")[0].checkValidity() && checkForm()) {
+                event.preventDefault();
+            // Push our data into our FormData object
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var phone1 = document.getElementById("phone1").value;
+            var phone2 = document.getElementById("phone2").value;
+            var company = document.getElementById("company").value;
+            var singles_men = document.getElementById("men-singles").checked ? 1 : 0;
+            var singles_women = document.getElementById("women-singles").checked ? 1 : 0;
+            var doubles_men = document.getElementById("men-doubles").checked ? 1 : 0;
+            var doubles_women = document.getElementById("women-doubles").checked ? 1 : 0;
+            var doubles_mixed = document.getElementById("mixed-doubles").checked ? 1 : 0;
+            var price = document.getElementById("price").innerHTML;
+            var same_partner = document.getElementById("gender_partner").value;
+            var mixed_partner = document.getElementById("mixed_partner").value;
+
+
+            $.ajax({
+                type: 'POST',
+                url: 'http://tgfopen.com/admin/user.php',
+                crossDomain: true, // tell browser to allow cross domain  
+                data: {
+                    'fullName': name,
+                    'mobileNumber': phone1,
+                    'altMobileNumber': phone2,
+                    'emailID': email,
+                    'companyName': company,
+                    'totalAmount': price,
+                    'menSingle': singles_men,
+                    'womenSingle': singles_women,
+                    'doubleMix': doubles_mixed,
+                    'menDouble': doubles_men,
+                    'womenDouble': doubles_women,
+                    'payVenue': false ? 1 : 0,
+                    'partnerDouble': same_partner,
+                    'partnerMix': mixed_partner,
+                },
+                success: function(data){
+                    console.log(data);                    
+                    // data= encodeURIComponent(data);
+                    window.location = data;
+                },
+                failure: function(data){
+                    console.log(data);
+                }
+
+
+            });
+                
+            }
+            else if ($("#pay_form")[0].checkValidity()){
+                event.preventDefault();
+            }
+            
+        }
+    </script>
+    <style type="text/css">
+    .formstyle{
+        
+        border-radius: 15px;
+        padding: 25px;
+        border: 5px solid #d5ab3e;
+        color: black;
+    }
+    </style>
+</head>
+
+<body style="max-width: 50%; margin: auto;">
+    <div>
+        <h1>
+            <center>Enter Your Details</center>
+        </h1>
+        <form id="pay_form" class="formstyle">
+            <label> Name </label>
+            &emsp;&emsp;&emsp;&emsp;&emsp;<input type="text" id="name" class="form-control" required </input> <br>
+            <label> Email </label> &ensp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+            <input type="email" id="email" class="form-control" required> &nbsp;</input><br>
+            <label> Phone No </label>&emsp;&emsp;&emsp;
+            <input type="number" id="phone1" class="form-control" required> </input><br>
+            <label> Company Name </label>&nbsp;&nbsp;
+            <input type="text" id="company" class="form-control" required></input><br>
+            <label> Alternate Number </label>
+            <input type="number" id="phone2" class="form-control"></input><br>
+            <h5>Categories</h5>
+            <h5>
+                <center>Singles</center>
+            </h5>
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <input type="checkbox" onclick="updatePrice()" id="men-singles" name="men-singles" value="men"
+                        onSelect>&nbsp;&nbsp;Male
+                    Singles
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <input type="checkbox" onclick="updatePrice()" id="women-singles" names="women-singles"
+                        value="women">&nbsp;&nbsp;Female
+                    Singles<br>
+                </div>
+            </div>
+            <h5>
+                <center>Doubles</center>
+            </h5>
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <input type="checkbox" onclick="updatePrice()" id="men-doubles" name="men-doubles" value="men">&nbsp;&nbsp;Male Doubles
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 ">
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <input type="checkbox" onclick="updatePrice()" id="women-doubles" name="women-doubles"
+                        value="female">&nbsp;Female Doubles
+                </div>
+
+            </div>
+            <label> Partner Name </label>
+            <input type="text" id="gender_partner" class="form-control"></input><br>
+            <h5>
+
+                <center>Mixed Doubles</center>
+            </h5>
+            <div style="text-align: center;">
+                <input type="checkbox" onclick="updatePrice()" id="mixed-doubles" name="mixed-doubles"> Mixed
+                Doubles</input><br>
+            </div>
+            <label> Mixed Doubles Partner Name</label>
+            <input type="text" class="form-control" id="mixed_partner"> </input><br>
+            Price :<label id="price">0</label><br>
+            <button class="btn btn-primary" type="submit" onclick="payNow(event)">Pay Now</button>
+            <button class="btn btn-primary" type="submit" onclick="payVenue(event)"> Pay at Venue</button>
+
+        </form>
+    </div>
+
+
+
+
+
+</body>
+
+
+
+</html>

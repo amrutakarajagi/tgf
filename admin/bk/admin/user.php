@@ -13,59 +13,59 @@ try {
 	if($_SERVER['REQUEST_METHOD'] === 'POST') {	
 
 		// checking empty fields
-		if(isset($_POST['fullName']) && ctype_alpha(str_replace(' ', '', $_POST['fullName']))) {
+		if(isset($_POST['fullName'])) {
 			$name = $_POST['fullName'];
-		} else return 0;
+		} else echo 'Enter Full Name'; 
 
-		if(isset($_POST['mobileNumber']) && ctype_digit($_POST['mobileNumber'])) {
+		if(isset($_POST['mobileNumber'])) {
 			$mob_no = $_POST['mobileNumber'];
-		} else return 0; 
+		} else echo 'Enter Mobile Number'; 
 
-		if(!is_null($_POST['altMobileNumber']) && !empty($_POST['altMobileNumber']) && ctype_digit($_POST['altMobileNumber'])) {
+		if(!is_null($_POST['altMobileNumber']) && !empty($_POST['altMobileNumber']) ) {
 			$alt_mob_no = $_POST['altMobileNumber'];
 		} else $alt_mob_no = 0;
 
-		if(isset($_POST['emailID']) && filter_var($_POST['emailID'], FILTER_VALIDATE_EMAIL)) {
+		if(isset($_POST['emailID'])) {
 			$email = $_POST['emailID'];
-		} else return 0;
+		} else echo 'Enter Email ID';
 
-		if(isset($_POST['companyName']) && ctype_alnum($_POST['companyName'])) {
+		if(isset($_POST['companyName'])) {
 			$company = $_POST['companyName'];
 		} else $company=Null;
 
-		if(isset($_POST['totalAmount']) && ctype_digit($_POST['totalAmount'])) {
+		if(isset($_POST['totalAmount'])) {
 			$amount = $_POST['totalAmount'];
-		} else return 0;
+		} else echo 'Enter Total Amount';
 
-		if(!empty($_POST['partnerMix']) && ctype_alpha($_POST['partnerMix'])) {
+		if(!empty($_POST['partnerMix'])) {
 			$partner_mix = $_POST['partnerMix'];
 		} else $partner_mix = '';
 
-		if(!empty($_POST['partnerDouble']) && ctype_alpha($_POST['partnerDouble'])) {
+		if(!empty($_POST['partnerDouble'])) {
 			$partner_double = $_POST['partnerDouble'];
 		} else $partner_double = '';
 
-		if(!empty($_POST['menSingle']) && ctype_digit($_POST['menSingle'])) {
+		if(!empty($_POST['menSingle'])) {
 			$men_single = $_POST['menSingle'];
 		} else $men_single = 0;
 
-		if(!empty($_POST['menDouble']) && ctype_digit($_POST['menDouble'])) {
+		if(!empty($_POST['menDouble'])) {
 			$men_double = $_POST['menDouble'];
 		} else $men_double = 0;
 
-		if(!empty($_POST['womenDouble']) && ctype_digit($_POST['womenDouble'])) {
+		if(!empty($_POST['womenDouble'])) {
 			$women_double = $_POST['womenDouble'];
 		} else $women_double = 0;
 
-		if(!empty($_POST['womenSingle']) && ctype_digit($_POST['womenSingle'])) {
+		if(!empty($_POST['womenSingle'])) {
 			$women_single = $_POST['womenSingle'];
 		} else $women_single = 0;
 
-		if(!empty($_POST['doubleMix']) && ctype_digit($_POST['doubleMix'])) {
+		if(!empty($_POST['doubleMix'])) {
 			$mix_double = $_POST['doubleMix'];
 		} else $mix_double = 0;
 
-		if(!empty($_POST['payVenue']) && ctype_digit($_POST['payVenue'])) {
+		if(!empty($_POST['payVenue'])) {
 			$pay_at_venue = $_POST['payVenue'];
 		} else $pay_at_venue = 0;
 		// if(empty($amount)) {
