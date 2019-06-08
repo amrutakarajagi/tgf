@@ -1,0 +1,60 @@
+gmail account for zenrays
+dev.zenrays@gmail.com
+dev.zen$999
+AWS
+devzen
+
+52.66.240.234
+
+ec2-52-66-240-234.ap-south-1.compute.amazonaws.com
+
+
+ssh ubuntu@ec2-52-66-240-234.ap-south-1.compute.amazonaws.com
+
+
+sudo apt update
+sudo apt install apache2
+sudo ufw app list
+sudo ufw app info "Apache Full"
+sudo ufw allow in "Apache Full"
+http://52.66.240.234/
+
+sudo apt install mysql-server
+sudo mysql_secure_installation
+
+sudo mysql
+SELECT user,authentication_string,plugin,host FROM mysql.user;
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '9#}>-6P?},j#qz3U';
+FLUSH PRIVILEGES;
+exit
+
+sudo apt install php libapache2-mod-php php-mysql
+sudo systemctl restart apache2
+
+
+ssh ubuntu@ec2-52-66-240-234.ap-south-1.compute.amazonaws.com
+9#}>-6P?},j#qz3U
+mysqldump -u root -p tgf_open_db > db-bk-$(date +%F).sql
+mysqldump -u [username] -p [databaseName] > [filename]-$(date +%F).sql
+sudo mysql -u root -p
+
+scp ubuntu@ec2-52-66-240-234.ap-south-1.compute.amazonaws.com:~/*.sql ./
+
+
+MANIKANDAN
+mani.mktbgl@globelinkww.com
++919845197391
+MOJO9524Z05A07077848
+300
+
+MANIKANDAN
+mani.mktbgl@globelinkww.com
++919845197391
+MOJO9524Y05A07077701
+400
+
+Sunil Kullu
+kullu2010@gmail.com
++919110242303
+MOJO9521C05N23136541
+400

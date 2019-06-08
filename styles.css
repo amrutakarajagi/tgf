@@ -9,7 +9,7 @@ body{
       @media only screen and (max-width: 768px) {
         /* For mobile phones: */
         .img-cock {
-          display: none !important;
+          display: none;
         }
         .mob-block{
           display: inline !important; 

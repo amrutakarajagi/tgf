@@ -64,6 +64,7 @@ td {
 				<td>Partner</td>
 			<?php } ?>
 			<td>Payment ID</td>
+			<td>Time</td>
 		</tr>
 		<?php
 		$i = 1;
@@ -87,6 +88,7 @@ td {
 				echo "<td>".$res['partner_mix']."</td>";	
 			}
 			echo "<td>".$res['payment_id']."</td>";
+			echo "<td>".$res['created_at']."</td>";
 			echo "</tr>";	
 			// echo "<td><a href=\"edit.php?id=$res[id]\">Edit</a> | <a href=\"delete.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";		
 		}

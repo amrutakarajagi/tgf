@@ -1,4 +1,5 @@
 <?php
+session_start();
 //including the database connection file
 include_once("connection.php");
 include("instamojoPay.php");
@@ -29,19 +30,19 @@ try {
 			$email = $_POST['emailID'];
 		} else return 0;
 
-		if(isset($_POST['companyName']) && ctype_alnum($_POST['companyName'])) {
-			$company = $_POST['companyName'];
+		if(isset($_POST['companyName'])) {
+			$company = filter_var($_POST['companyName'], FILTER_SANITIZE_STRING);
 		} else $company=Null;
 
 		if(isset($_POST['totalAmount']) && ctype_digit($_POST['totalAmount'])) {
 			$amount = $_POST['totalAmount'];
 		} else return 0;
 
-		if(!empty($_POST['partnerMix']) && ctype_alpha($_POST['partnerMix'])) {
+		if(!empty($_POST['partnerMix']) && ctype_alpha(str_replace(' ', '', $_POST['partnerMix']))) {
 			$partner_mix = $_POST['partnerMix'];
 		} else $partner_mix = '';
 
-		if(!empty($_POST['partnerDouble']) && ctype_alpha($_POST['partnerDouble'])) {
+		if(!empty($_POST['partnerDouble']) && ctype_alpha(str_replace(' ', '', $_POST['partnerDouble']))) {
 			$partner_double = $_POST['partnerDouble'];
 		} else $partner_double = '';
 
@@ -79,10 +80,12 @@ try {
 		$sql = "INSERT INTO users(name, mob_no, alt_mob_no, email, company, amount, partner_mix, partner_double, men_single, men_double, women_double, women_single, mix_double, pay_at_venue) VALUES('$name','$mob_no','$alt_mob_no','$email','$company','$amount','$partner_mix','$partner_double','$men_single','$men_double','$women_double','$women_single','$mix_double','$pay_at_venue')";
 
 		if (mysqli_query($mysqli, $sql)) {
+			if ($pay_at_venue == 1) {
+				echo 1;
+			} else {
 		    $last_id = mysqli_insert_id($mysqli);
 		    // echo $last_id;
 
-			session_start();
 			$_SESSION["mob_no"] = $mob_no;
 			$_SESSION["email"] = $email;
 
@@ -107,6 +110,8 @@ try {
 				$_SESSION["reg_id"] = $last_id;
 				$_SESSION["tran_id"] = $response['id'];
 				echo($response['longurl']);
+
+			}
 			}
 			catch (Exception $e) {
 			    print('Error: ' . $e->getMessage());
