@@ -6,7 +6,8 @@ if(isset($_POST['submit'])) {
 
 	$user = mysqli_real_escape_string($mysqli, $_POST['username']);
 	$pass = mysqli_real_escape_string($mysqli, $_POST['password']);
-
+//	echo $user;
+//	echo $pass;
 	if($user == "" || $pass == "") {
 		echo "Either username or password field is empty.";
 		echo "<br/>";

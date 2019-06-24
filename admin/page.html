@@ -84,7 +84,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: 'http://tgfopen.com/admin/user.php',
+                url: 'user.php',
                 crossDomain: true, // tell browser to allow cross domain  
                 data: {
                     'fullName': name,
@@ -103,10 +103,14 @@
                     'partnerMix': mixed_partner,
                 },
                 success: function(data){
+		    console.log("success");
+		    console.log(data);
                     // alert("Registration Successful. Click Ok to redirect to home page");
-                    window.location="http://tgfopen.com/admin/success.php?payment=at_venue";
+                    window.location="success.php?payment=at_venue";
                 },
                 failure: function(data){
+                    console.log("failure");
+                    console.log(data);
                     return data;
                 }
 
@@ -152,7 +156,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: 'http://tgfopen.com/admin/user.php',
+                url: 'user.php',
                 crossDomain: true, // tell browser to allow cross domain  
                 data: {
                     'fullName': name,

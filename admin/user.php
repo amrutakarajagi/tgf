@@ -83,38 +83,38 @@ try {
 			if ($pay_at_venue == 1) {
 				echo 1;
 			} else {
-		    $last_id = mysqli_insert_id($mysqli);
-		    // echo $last_id;
+			    $last_id = mysqli_insert_id($mysqli);
+			    // echo $last_id;
 
-			$_SESSION["mob_no"] = $mob_no;
-			$_SESSION["email"] = $email;
+				$_SESSION["mob_no"] = $mob_no;
+				$_SESSION["email"] = $email;
 
 
-			try {
-				$api = new Instamojo\Instamojo('715723becbeb6a343f262ac1312ea3ce', 'cff4d4b902d8b7baa402dae91ae30957');
-				// $api = new Instamojo\Instamojo('test_47eb37e1668e266835291e1e33e', 'test_0ab040ecc047d76a329f1adcff1');
+				try {
+					$api = new Instamojo\Instamojo('715723becbeb6a343f262ac1312ea3ce', 'cff4d4b902d8b7baa402dae91ae30957');
+					// $api = new Instamojo\Instamojo('test_47eb37e1668e266835291e1e33e', 'test_0ab040ecc047d76a329f1adcff1');
 
-				$response = $api->paymentRequestCreate(array(
-					"purpose" => "TGF Open",
-					"amount" => $amount,
-					"phone" => $mob_no,
-					"send_email" => true,
-					"send_sms" => true,
-					"email" => $email,
-					"buyer_name" => $name,
-					"redirect_url" => "http://tgfopen.com/admin/success.php"
-				));
-				// echo($response['id']);
-				// exit(header("Location: ".$response['longurl']));
+					$response = $api->paymentRequestCreate(array(
+						"purpose" => "TGF Open",
+						"amount" => $amount,
+						"phone" => $mob_no,
+						"send_email" => true,
+						"send_sms" => true,
+						"email" => $email,
+						"buyer_name" => $name,
+						"redirect_url" => "http://tgfopen.com/admin/success.php"
+					));
+					// echo($response['id']);
+					// exit(header("Location: ".$response['longurl']));
 
-				$_SESSION["reg_id"] = $last_id;
-				$_SESSION["tran_id"] = $response['id'];
-				echo($response['longurl']);
+					$_SESSION["reg_id"] = $last_id;
+					$_SESSION["tran_id"] = $response['id'];
+					echo($response['longurl']);
 
-			}
-			}
-			catch (Exception $e) {
-			    print('Error: ' . $e->getMessage());
+				}
+				catch (Exception $e) {
+				    print('Error: ' . $e->getMessage());
+				}
 			}
 		} else {
 		    echo "Error: " . $sql . "<br>" . mysqli_error($mysqli);
@@ -125,3 +125,4 @@ catch (Exception $e) {
     print('Error: ' . $e->getMessage());
 }
 ?>
+
